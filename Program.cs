@@ -20,10 +20,14 @@ while (IsWork)
 
                     void Task_1()
                     {
+                        Console.WriteLine();
                         int lenght = ReadInt("размер массива");
                         int[] array = GetArray(lenght);
+                        Console.WriteLine();
                         Console.WriteLine($"создан массив чисел: {string.Join(", ", array)}");
+                        Console.WriteLine();
                         GetPositiveNumbers(array);
+                        Console.WriteLine();
                     }
 
                     int ReadInt(string argument)
@@ -76,9 +80,13 @@ while (IsWork)
 
                     void Task_2()
                     {
+                        Console.WriteLine();
                         int[] Array = GetArray(ReadInt("размер массива"), ReadInt("минимальное значение элемента массива"), ReadInt("максимальное значение элемента массива"));
+                        Console.WriteLine();
                         Console.WriteLine($"создан массив чисел: {string.Join(", ", Array)}");
+                        Console.WriteLine();
                         GetSum(Array);
+                        Console.WriteLine();
                     }
 
                     int ReadInt(string argument)
@@ -129,13 +137,18 @@ while (IsWork)
 
                     void Task_3()
                     {
-                        int[] Array = GetArray(ReadInt("размер массива"), ReadInt("минимальное значение элемента массива"), ReadInt("максимальное значение элемента массива"));
+                        Console.WriteLine();
+                        double[] Array = GetArray(ReadInt("размер массива"), ReadInt("минимальное значение элемента массива"), ReadInt("максимальное значение элемента массива"));
+                        Console.WriteLine();
                         Console.WriteLine($"создан массив чисел: {string.Join(", ", Array)}");
+                        Console.WriteLine();
+                        GetDifference(Array);
+                        Console.WriteLine();
                     }
 
                     int ReadInt(string argument)
                     {
-                        Console.Write($"Введите {argument}: ");
+                        Console.Write($"Задайте {argument}: ");
                         int number;
 
                         while(!int.TryParse(Console.ReadLine(),out number))
@@ -146,9 +159,9 @@ while (IsWork)
                         return number;
                     }
 
-                    int[] GetArray(int lenght, int min, int max)
+                    double[] GetArray(int lenght, int min, int max)
                     {
-                        int[] array = new int[lenght];
+                        double[] array = new double[lenght];
                         Random rnd = new Random();
                         
                         for (int i = 0; i < lenght; i++)
@@ -158,6 +171,31 @@ while (IsWork)
 
                         return array;
                     }
+
+                    void GetDifference(double[] array)
+                    {
+                        int i = 0;
+                        double max = array[i];
+                        double min = array[i];
+                        for (i = 0; i < array.Length; i++)
+                        {
+                            if (min > array[i])
+                            {
+                                min = array[i];
+                            }
+                            else if (max < array[i])
+                            {
+                                max = array[i];
+                            }
+                            else
+                            {
+                            }
+                        }
+                        double difference = max - min;
+
+                        Console.WriteLine($"разница между максимальным и минимальным элементами массива: {difference}");
+                    }
+
                     break;
                 }
             case -1: IsWork = false; break;
