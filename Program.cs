@@ -76,14 +76,14 @@ while (IsWork)
 
                     void Task_2()
                     {
-                        int number = ReadInt("число");
-
-                        Calculate2(number);
+                        int[] Array = GetArray(ReadInt("размер массива"), ReadInt("минимальное значение элемента массива"), ReadInt("максимальное значение элемента массива"));
+                        Console.WriteLine($"создан массив чисел: {string.Join(", ", Array)}");
+                        GetSum(Array);
                     }
 
                     int ReadInt(string argument)
                     {
-                        Console.Write($"Введите {argument}: ");
+                        Console.Write($"Задайте {argument}: ");
                         int number;
 
                         while(!int.TryParse(Console.ReadLine(),out number))
@@ -93,19 +93,33 @@ while (IsWork)
                         
                         return number;
                     }
-
-                    void Calculate2(int number)
+                    
+                    int[] GetArray(int lenght, int min, int max)
                     {
-                        string digitString = number.ToString();
-                        int len = digitString.Length;
-                        int counter = 0;
-                        int temp = number;
-                        for (int i = 0; i < len; i ++)
+                        int[] array = new int[lenght];
+                        Random rnd = new Random();
+                        
+                        for (int i = 0; i < lenght; i++)
                         {
-                            counter = counter + temp % 10;
-                            temp = temp / 10;
+                            array[i] = rnd.Next(min, max + 1);
                         }
-                        Console.WriteLine($"сумма цифр в числе {number} = {counter}");
+
+                        return array;
+                    }
+
+                    void GetSum(int[] array)
+                    {
+                        int sum = 0;
+                        for (int i = 0; i < array.Length; i++)
+                        {
+                            if (i % 2 != 0)
+                            {
+                                sum += array[i];
+                            }
+                            else {}
+                        }
+
+                        Console.WriteLine($"сумма элементов на нечётных позициях: {sum}");
                     }
                     break;
                 }
